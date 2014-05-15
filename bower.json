@@ -9,6 +9,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "jquery": "~2.1.1"
+    "jquery": "~2.1.1",
+    "toastr": "~2.0.2"
   }
 }
