@@ -1,12 +1,26 @@
-var express = require('express');
+var express = require('express'),
+    stylus = require('stylus');
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = express();
 
+var compileFn = function (str, path) {
+    return stylus(str).set('filename', path);
+};
+
 app.configure(function () {
     app.set('views', __dirname + '/server/views');
     app.set('view engine', 'jade');
+    app.use(stylus.middleware(
+        {
+        src: __dirname + '/public',
+        compile: compileFn
+        }
+    ));
+
+    // static routing, so any request for static resources like CSS, images, will be sent to the public folder.
+    app.use(express.static(__dirname + '/public'));
 });
 
 app.get('*', function (req, res) {
