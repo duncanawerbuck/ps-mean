@@ -29,7 +29,8 @@ app.configure(function () {
 //////////////////////////////////////////////////////
 // sexy db stuff....
 
-mongoose.connect('mongodb://localhost/multivision');
+//mongoose.connect('mongodb://localhost/multivision');
+mongoose.connect('mongodb://bdabuilder:multivision@ds043329.mongolab.com:43329/test23100');
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error...'));
@@ -47,6 +48,7 @@ Message.findOne().exec(function (err, messageDoc) {
     mongoMessage = messageDoc.message;
 });
 
+// end of sexy db stuff
 //////////////////////////////////////////////////////
 
 app.get('/partials/:partialPath', function (req, res) {
